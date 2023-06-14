@@ -4,6 +4,7 @@ function playGame() {
 
   let playerPoints = 0;
   let computerPoints = 0;
+  let roundNumber = 1;
   let roundResult = "";
 
   for (let i = 0; i < 5; i++) {
@@ -12,7 +13,7 @@ function playGame() {
 
   function playRound() {
     const computerSelection = getComputerSelection();
-    const playerSelection = capitalize(prompt("Rock, Paper, Scissors. Your choice:"));
+    const playerSelection = capitalize(prompt(`Round: ${roundNumber}\/5\nRock, Paper, Scissors. Your choice:`));
 
     function capitalize(input) {
       const lowercase = input.toLowerCase();
@@ -54,7 +55,9 @@ function playGame() {
 
     compareSelection(playerSelection, computerSelection);
 
-    alert(`Your Choice: ${playerSelection}  |  Computer's Choice: ${computerSelection}\n${roundResult}\n\nYour Score: ${playerPoints} points  |  Computer's Score: ${computerPoints} points`);
+    alert(`RESULT OF ROUND ${roundNumber}\n\nYour Choice: ${playerSelection}  |  Computer's Choice: ${computerSelection}\n${roundResult}\n\nYour Score: ${playerPoints} points  |  Computer's Score: ${computerPoints} points`);
+
+    roundNumber++;
     
   }
 
