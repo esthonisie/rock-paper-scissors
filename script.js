@@ -7,13 +7,13 @@ function playGame() {
   let roundNumber = 1;
   let roundResult = "";
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; roundNumber < 6; i++) {
     playRound();
   }
 
   function playRound() {
     const computerSelection = getComputerSelection();
-    const playerSelection = capitalize(prompt(`Round: ${roundNumber}\/5\nRock, Paper, Scissors. Your choice:`));
+    const playerSelection = capitalize(prompt(`Round: ${roundNumber}\/5\nRock, paper or scissors. Your choice:`));
 
     function capitalize(input) {
       const lowercase = input.toLowerCase();
@@ -48,8 +48,14 @@ function playGame() {
           roundResult = "It's a tie!";
           playerPoints += 5;
           computerPoints += 5;
-      } else if(you === "" || (you !== "Rock" || you !== "Paper" || you !== "Scissors")) {
-          roundResult = "Hello User. Please make a choice: Rock, Paper or Scissors.";
+      } else if(you === "" || (you !== "Rock" && you !== "Paper" && you !== "Scissors")) {
+          roundResult = "Hello User. Please make a choice: rock, paper or scissors.";
+      }
+    }
+
+    function replayRound(you) {
+      if(you === "" || (you !== "Rock" && you !== "Paper" && you !== "Scissors")) {
+        roundNumber -= 1;
       }
     }
 
@@ -58,6 +64,7 @@ function playGame() {
     alert(`RESULT OF ROUND ${roundNumber}\n\nYour Choice: ${playerSelection}  |  Computer's Choice: ${computerSelection}\n${roundResult}\n\nYour Score: ${playerPoints} points  |  Computer's Score: ${computerPoints} points`);
 
     roundNumber++;
+    replayRound(playerSelection);
     
   }
 
