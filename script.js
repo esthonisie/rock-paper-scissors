@@ -1,5 +1,5 @@
 const computerSelection = getComputerSelection();
-const playerSelection = capitalize("rOcK");
+const playerSelection = capitalize(prompt("Rock, Paper, Scissors. Your choice:"));
 
 function capitalize(input) {
   const lowercase = input.toLowerCase();
@@ -29,7 +29,5 @@ function compareSelection(you, other) {
   } 
 }
 
-console.log(`Your Choice: ${playerSelection}`);
-console.log(`Computer's Choice: ${computerSelection}`);
-console.log(compareSelection(playerSelection, computerSelection))
+alert(`Your Choice: ${playerSelection}  |  Computer's Choice: ${computerSelection}\n${compareSelection(playerSelection, computerSelection)}`);
 
