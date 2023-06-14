@@ -57,6 +57,13 @@ function playGame() {
     alert(`Your Choice: ${playerSelection}  |  Computer's Choice: ${computerSelection}\n${roundResult}\n\nYour Score: ${playerPoints} points  |  Computer's Score: ${computerPoints} points`);
     
   }
+
+  if(playerPoints > computerPoints) {
+    alert("YOU'VE WON THE GAME!");
+  } else if(playerPoints < computerPoints) {
+    alert("SORRY, YOU'VE LOST THE GAME.");
+  } else alert("IT'S A TIE!\nNo winners, no losers.");
+
 }
 
 
