@@ -4,7 +4,12 @@ function playGame() {
 
   let playerPoints = 0;
   let computerPoints = 0;
+  
   let roundNumber = 1;
+  let roundNumberPrompt = "Round: ";
+  let roundNumberTotal = "/5"
+  let roundNumberAlert = "Result of ROUND "
+
   let roundResult = "";
 
   for (let i = 0; roundNumber < 6; i++) {
@@ -13,7 +18,7 @@ function playGame() {
 
   function playRound() {
     const computerSelection = getComputerSelection();
-    const playerSelection = capitalize(prompt(`Round: ${roundNumber}\/5\nRock, paper or scissors. Your choice:`));
+    const playerSelection = capitalize(prompt(`${roundNumberPrompt}${roundNumber}${roundNumberTotal}\nRock, paper or scissors. Your choice:`));
 
     function capitalize(input) {
       const lowercase = input.toLowerCase();
@@ -61,19 +66,35 @@ function playGame() {
 
     compareSelection(playerSelection, computerSelection);
 
-    alert(`RESULT OF ROUND ${roundNumber}\n\nYour Choice: ${playerSelection}  |  Computer's Choice: ${computerSelection}\n${roundResult}\n\nYour Score: ${playerPoints} points  |  Computer's Score: ${computerPoints} points`);
-
+    alert(`${roundNumberAlert}${roundNumber}\n\nYour Choice: ${playerSelection}  |  Computer's Choice: ${computerSelection}\n${roundResult}\n\nYour Score: ${playerPoints} points  |  Computer's Score: ${computerPoints} points`);
+    
     roundNumber++;
     replayRound(playerSelection);
     
+  }
+
+  function extraRound() {
+    alert("IT'S A TIE.\nPlay an extra round!");
+    for (let i = 0; playerPoints === computerPoints; i++) {
+      roundNumber = "EXTRA ROUND";
+      roundNumberTotal = "";
+      roundNumberPrompt = "";
+      roundNumberAlert = "Result of ";
+      playRound();
+    }
+    if(playerPoints > computerPoints) {
+      alert("YOU'VE WON THE GAME!");
+    } else if(playerPoints < computerPoints) {
+      alert("SORRY, YOU'VE LOST THE GAME.");
+    }
   }
 
   if(playerPoints > computerPoints) {
     alert("YOU'VE WON THE GAME!");
   } else if(playerPoints < computerPoints) {
     alert("SORRY, YOU'VE LOST THE GAME.");
-  } else alert("IT'S A TIE!\nNo winners, no losers.");
-
+  } else extraRound();
+    
 }
 
 
