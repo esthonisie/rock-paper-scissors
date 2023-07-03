@@ -12,8 +12,9 @@ function playGame() {
 
   let roundResult = "";
 
-  for (let i = 0; roundNumber < 6; i++) {
+  while (roundNumber < 6) {
     playRound();
+    roundNumber++;
   }
 
   function playRound() {
@@ -68,33 +69,33 @@ function playGame() {
 
     alert(`${roundNumberAlert}${roundNumber}\n\nYour Choice: ${playerSelection}  |  Computer's Choice: ${computerSelection}\n${roundResult}\n\nYour Score: ${playerPoints} points  |  Computer's Score: ${computerPoints} points`);
     
-    roundNumber++;
     replayRound(playerSelection);
-    
   }
 
-  function extraRound() {
-    alert("IT'S A TIE.\nPlay an extra round!");
+  function checkWinner() {
+    if(playerPoints > computerPoints) {
+      alert("YOU'VE WON THE GAME!");
+    } else if(playerPoints < computerPoints) {
+      alert("SORRY, YOU'VE LOST THE GAME.");
+    } 
+  }
+
+  function playExtraRound() {
+    alert("NO WINNERS, NO LOSERS.\nPlay an extra round!");
     for (let i = 0; playerPoints === computerPoints; i++) {
       roundNumber = "EXTRA ROUND";
       roundNumberTotal = "";
       roundNumberPrompt = "";
       roundNumberAlert = "Result of ";
       playRound();
-    }
-    if(playerPoints > computerPoints) {
-      alert("YOU'VE WON THE GAME!");
-    } else if(playerPoints < computerPoints) {
-      alert("SORRY, YOU'VE LOST THE GAME.");
+      checkWinner();
     }
   }
 
-  if(playerPoints > computerPoints) {
-    alert("YOU'VE WON THE GAME!");
-  } else if(playerPoints < computerPoints) {
-    alert("SORRY, YOU'VE LOST THE GAME.");
-  } else extraRound();
-    
+  if(playerPoints !== computerPoints) {
+    checkWinner();
+  } else playExtraRound();
+  
 }
 
 
